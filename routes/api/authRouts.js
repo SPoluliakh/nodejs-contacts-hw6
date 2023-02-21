@@ -13,6 +13,8 @@ authRouter.post(
   cntrlWrap(cntr.register)
 );
 
+authRouter.get("/verify/:verificationToken", cntrlWrap(cntr.verifyEmail));
+
 authRouter.post("/login", validation(joiLoginSchema), cntrlWrap(cntr.login));
 
 authRouter.post("/logout", auth, cntrlWrap(cntr.logout));

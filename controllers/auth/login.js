@@ -6,8 +6,8 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   const pass = await user?.verifyPassword(password);
-  if (!user || !pass) {
-    const error = new Error("Email or password is incorrect");
+  if (!user || !pass || !user.verify) {
+    const error = new Error("Email or password is incorrect or not verified");
     error.status = 401;
     throw error;
   }
