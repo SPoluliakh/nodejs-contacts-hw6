@@ -1,4 +1,5 @@
 const { Contact } = require("../../models/contact");
+const { customError } = require("../../helpers");
 
 const remove = async (req, res) => {
   const { id } = req.params;
@@ -9,9 +10,7 @@ const remove = async (req, res) => {
     owner: _id,
   });
   if (!contactToDelete) {
-    const error = new Error(`contact whith id = ${id} not found`);
-    error.status = 404;
-    throw error;
+    throw customError(`contact whith id = ${id} not found`, 404);
   }
   res.json({
     status: "success",

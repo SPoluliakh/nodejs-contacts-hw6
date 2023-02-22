@@ -1,4 +1,5 @@
 const { Contact } = require("../../models/contact");
+const { customError } = require("../../helpers");
 
 const getById = async (req, res) => {
   const { id } = req.params;
@@ -8,9 +9,7 @@ const getById = async (req, res) => {
     "-createdAt -updatedAt"
   ).populate("owner", "_id name email");
   if (!contact) {
-    const error = new Error(`contact whith id = ${id} not found`);
-    error.status = 404;
-    throw error;
+    throw customError(`contact whith id = ${id} not found`, 404);
   }
   res.json({
     status: "success",

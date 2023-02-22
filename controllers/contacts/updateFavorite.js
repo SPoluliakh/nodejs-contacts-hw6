@@ -1,4 +1,5 @@
 const { Contact } = require("../../models/contact");
+const { customError } = require("../../helpers");
 
 const updateFavorite = async (req, res) => {
   const { body } = req;
@@ -13,9 +14,7 @@ const updateFavorite = async (req, res) => {
     }
   );
   if (!contactToUpdate) {
-    const error = new Error(`contact whith id = ${id} not found`);
-    error.status = 404;
-    throw error;
+    throw customError(`contact whith id = ${id} not found`, 404);
   }
   res.json({
     status: "success",

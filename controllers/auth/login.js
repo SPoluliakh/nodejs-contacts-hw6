@@ -1,15 +1,13 @@
 const { User } = require("../../models/user");
 
-const { createToken } = require("../../helpers");
+const { createToken, customError } = require("../../helpers");
 
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   const pass = await user?.verifyPassword(password);
   if (!user || !pass || !user.verify) {
-    const error = new Error("Email or password is incorrect or not verified");
-    error.status = 401;
-    throw error;
+    throw customError("Email or password is incorrect or not verified", 401);
   }
 
   const payload = {

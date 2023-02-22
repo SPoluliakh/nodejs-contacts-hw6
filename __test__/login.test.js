@@ -89,6 +89,6 @@ describe("test login controller", () => {
       });
 
     expect(status).toBe(401);
-    expect(message).toBe("Email or password is incorrect");
+    expect(message).toBe("Email or password is incorrect or not verified");
   });
 });

@@ -3,7 +3,11 @@ const express = require("express");
 const { authControllers: cntr } = require("../../controllers");
 const { validation, auth } = require("../../middlewars");
 const { cntrlWrap } = require("../../helpers");
-const { joiRegisterSchema, joiLoginSchema } = require("../../models/user");
+const {
+  joiRegisterSchema,
+  joiLoginSchema,
+  joiVerifyEmailSchema,
+} = require("../../models/user");
 
 const authRouter = express.Router();
 
@@ -14,6 +18,11 @@ authRouter.post(
 );
 
 authRouter.get("/verify/:verificationToken", cntrlWrap(cntr.verifyEmail));
+authRouter.post(
+  "/verify/",
+  validation(joiVerifyEmailSchema),
+  cntrlWrap(cntr.resendVerifyEmail)
+);
 
 authRouter.post("/login", validation(joiLoginSchema), cntrlWrap(cntr.login));
 
