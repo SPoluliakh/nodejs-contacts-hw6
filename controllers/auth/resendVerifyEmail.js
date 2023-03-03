@@ -13,7 +13,7 @@ const resendVerifyEmail = async (req, res) => {
     throw customError("Verification has already been passed", 400);
   }
   const mail = {
-    to: "S_Poluliakh@ukr.net",
+    to: email,
     subject: " Email`s verify",
     html: `<a target='_blank' href='http://localhost:3000/api/auth/verify/${user.verificationToken}' >Go to verify email</a>`,
   };

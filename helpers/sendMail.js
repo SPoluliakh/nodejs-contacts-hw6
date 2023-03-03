@@ -13,12 +13,3 @@ const sendMail = async (data) => {
   }
 };
 module.exports = sendMail;
-
-// const email = {
-//   to: "S_Poluliakh@ukr.net",
-//   from: "passverify@meta.ua",
-//   subject: " Email`s verify",
-//   html: "<a target='_blank' href='' >Go to verify email</a>",
-// };
-
-// sgMail.send(email).then().catch();
