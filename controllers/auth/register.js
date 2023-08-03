@@ -17,29 +17,30 @@ const register = async (req, res) => {
   const mail = {
     to: email,
     subject: " Email`s verify",
-    html: `<a target='_blank' href='http://localhost:3000/api/auth/verify/${verificationToken}' >Go to verify email</a>`,
+    // html: `<a target='_blank' href='http://localhost:3000/api/auth/verify/${verificationToken}' >Go to verify email</a>`,
+    html: `<a target='_blank' href='https://sparkling-beijinho-e39059.netlify.app/' >Go to verify email</a>`,
   };
   await sendMail(mail);
 
-  const payload = {
-    id: newUser._id,
-  };
-  const token = createToken(payload);
-  newUser.token = token;
+  // const payload = {
+  //   id: newUser._id,
+  // };
+  // const token = createToken(payload);
+  // newUser.token = token;
 
-  await newUser.save();
+  // await newUser.save();
 
   res.status(201).json({
     response: "success",
     status: 201,
-    data: {
-      user: {
-        name,
-        email,
-        avatarURL,
-      },
-      token,
-    },
+    // data: {
+    //   user: {
+    //     name,
+    //     email,
+    //     avatarURL,
+    //   },
+    //   token,
+    // },
   });
 };
 
